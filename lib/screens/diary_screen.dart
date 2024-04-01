@@ -12,7 +12,6 @@ class DiaryScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Diary'),
-        centerTitle: true,
       ),
       body: const DiaryListView(),
       floatingActionButton: FloatingActionButton(

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gp_app/models/classifier.dart';
 import 'package:flutter_gp_app/models/diary_entry.dart';
 import 'package:flutter_gp_app/providers/diary_entry_provider.dart';
 import 'package:flutter_gp_app/widgets/custom_quill_editor.dart';
@@ -81,6 +82,39 @@ class _AddEditDiaryScreenState extends State<AddEditDiaryScreen> {
               Navigator.of(context).pop();
             },
             child: const Text('Save'),
+          ),
+          TextButton(
+            onPressed: () async {
+              var _classifier = await Classifier.create();
+              var text = diaryEntry!.contentPlainText;
+              var text2 = text.replaceAll(RegExp(r'[^\w\s]'), '');
+
+              var res = _classifier.classify(text2);
+
+              var maxIndex = res.indexOf(res.reduce((a, b) => a > b ? a : b));
+              var emotion = '';
+              if (maxIndex == 0) {
+                emotion = 'natural';
+              } else if (maxIndex == 1) {
+                emotion = 'joy';
+              } else if (maxIndex == 2) {
+                emotion = 'sadness';
+              } else if (maxIndex == 3) {
+                emotion = 'anger';
+              } else if (maxIndex == 4) {
+                emotion = 'fear';
+              } else if (maxIndex == 5) {
+                emotion = 'love';
+              } else if (maxIndex == 6) {
+                emotion = 'surprise';
+              }
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(emotion),
+                ),
+              );
+            },
+            child: const Text('Test'),
           ),
         ],
       ),

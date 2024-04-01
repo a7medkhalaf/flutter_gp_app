@@ -658,6 +658,30 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.6.1"
+  tflite_flutter:
+    dependency: "direct main"
+    description:
+      name: tflite_flutter
+      sha256: ffb8651fdb116ab0131d6dc47ff73883e0f634ad1ab12bb2852eef1bbeab4a6a
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.10.4"
+  tflite_text_classification:
+    dependency: "direct main"
+    description:
+      name: tflite_text_classification
+      sha256: "3118774b6028af6f81ab3bbdba96d71cd34fae7b95e6f8f916d57914fafbed1b"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.2"
+  tflite_v2:
+    dependency: "direct main"
+    description:
+      name: tflite_v2
+      sha256: cedfa87aea6d0feb009a3d6f56ef7f2076617a916d3b002ff867c00aa3c69125
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.0"
   typed_data:
     dependency: transitive
     description:

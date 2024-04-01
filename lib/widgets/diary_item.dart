@@ -26,20 +26,23 @@ class DiaryListItem extends StatelessWidget {
             builder: (context) => AlertDialog(
               title: const Text('Delete'),
               content: const Text(
-                'Are you sure you want to remove this diary entry?',
+                'Are you sure you want to remove this diary ?',
               ),
               actions: [
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop(false);
                   },
-                  child: const Text('No'),
+                  child: const Text('Cancel'),
                 ),
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop(true);
                   },
-                  child: const Text('Yes'),
+                  child: const Text(
+                    'Delete',
+                    style: TextStyle(color: Colors.red),
+                  ),
                 ),
               ],
             ),
