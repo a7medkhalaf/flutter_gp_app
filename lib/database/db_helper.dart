@@ -13,7 +13,8 @@ const String _createDiaryTable = ''
     'title TEXT,'
     'content_plain_text TEXT,'
     'content_delta TEXT,'
-    'date TEXT'
+    'date TEXT,'
+    'emotion INTEGER'
     ')';
 
 class DbHelper {
@@ -81,7 +82,13 @@ class DbHelper {
         contentPlainText: maps[i]['content_plain_text'],
         contentDelta: maps[i]['content_delta'],
         date: DateTime.parse(maps[i]['date']),
+        emotion: Emotion.values[maps[i]['emotion']],
       );
     });
+  }
+
+  Future<int> deleteAllDiaries() async {
+    final db = await database;
+    return await db.delete(_diaryTable);
   }
 }

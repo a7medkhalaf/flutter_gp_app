@@ -1,4 +1,5 @@
 import 'package:flutter_gp_app/database/db_helper.dart';
+import 'package:flutter_gp_app/models/classifier.dart';
 import 'package:flutter_gp_app/models/diary_entry.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -51,6 +52,16 @@ void main() {
       arr.forEach((element) {
         element.toString();
       });
+    });
+  });
+
+  group('Classifier', () {
+    Classifier? classifier;
+    setUp(() async {
+      classifier = await Classifier.create();
+    });
+    test('Print StopWords', () {
+      classifier!.stopWords.forEach((element) => print(element));
     });
   });
 }

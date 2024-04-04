@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_gp_app/database/db_helper.dart';
-import 'package:flutter_gp_app/dummy_data.dart';
+import 'package:flutter_gp_app/dummy_data/dummy_data.dart';
+import 'package:flutter_gp_app/models/classifier.dart';
 import 'package:flutter_gp_app/models/diary_entry.dart';
 
 class DiaryEntryProvider with ChangeNotifier {
@@ -47,9 +50,11 @@ class DiaryEntryProvider with ChangeNotifier {
     required String contentDelta,
     required String contentPlainText,
     required DateTime date,
+    required Emotion emotion,
   }) {
     final diaryEntry = DiaryEntry(
       id: id ?? DateTime.now().millisecondsSinceEpoch,
+      emotion: emotion,
       title: title,
       contentDelta: contentDelta,
       contentPlainText: contentPlainText,
@@ -73,9 +78,10 @@ class DiaryEntryProvider with ChangeNotifier {
             : _diaryEntriesByMonth.add([diaryEntry]);
         DbHelper().insertDiary(diaryEntry);
       } catch (e) {
-        print(e);
+        log(e.toString());
       }
     }
+    _updateDiaryEmotion(diaryEntry);
     notifyListeners();
   }
 
@@ -86,5 +92,44 @@ class DiaryEntryProvider with ChangeNotifier {
     }
     DbHelper().deleteDiary(diaryId);
     notifyListeners();
+  }
+
+  void resetDiaryEntries() {
+    _diaryEntries.clear();
+    _diaryEntriesByMonth.clear();
+    DbHelper().deleteAllDiaries();
+    diaryEntries;
+    notifyListeners();
+  }
+
+  void _updateDiaryEmotion(diaryEntry) async {
+    var classifier = await Classifier.create();
+    var text = diaryEntry.contentPlainText;
+    var res = await classifier.classify(text);
+    var maxIndex = res.indexOf(res.reduce((a, b) => a > b ? a : b));
+
+    switch (maxIndex) {
+      case 0:
+        diaryEntry.emotion = Emotion.neutral;
+        break;
+      case 1:
+        diaryEntry.emotion = Emotion.joy;
+        break;
+      case 2:
+        diaryEntry.emotion = Emotion.sad;
+        break;
+      case 3:
+        diaryEntry.emotion = Emotion.angry;
+        break;
+      case 4:
+        diaryEntry.emotion = Emotion.fear;
+        break;
+      case 5:
+        diaryEntry.emotion = Emotion.love;
+        break;
+      case 6:
+        diaryEntry.emotion = Emotion.surprised;
+        break;
+    }
   }
 }

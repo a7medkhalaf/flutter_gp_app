@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gp_app/models/diary_entry.dart';
 import 'package:flutter_gp_app/providers/diary_entry_provider.dart';
 import 'package:flutter_gp_app/screens/add_edit_diary_screen.dart';
+import 'package:flutter_gp_app/widgets/constants.dart';
 import 'package:flutter_gp_app/widgets/diary_date.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class DiaryListItem extends StatelessWidget {
@@ -58,26 +60,25 @@ class DiaryListItem extends StatelessWidget {
           ),
         ),
         child: ListTile(
-          onTap: () {
-            Navigator.of(context).pushNamed(
-              AddEditDiaryScreen.routeName,
-              arguments: diary,
-            );
-          },
-          title: Text(
-            diary.title,
-          ),
-          subtitle: Text(
-            diary.contentPlainText,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              color: Colors.grey,
+            onTap: () {
+              Navigator.of(context).pushNamed(
+                AddEditDiaryScreen.routeName,
+                arguments: diary,
+              );
+            },
+            title: Text(
+              diary.title,
             ),
-          ),
-          leading: DiaryDate(diary.date),
-          trailing: const Icon(Icons.emoji_emotions_outlined),
-        ),
+            subtitle: Text(
+              diary.contentPlainText,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+            leading: DiaryDate(diary.date),
+            trailing: diary.getEmotion()),
       ),
     );
   }
