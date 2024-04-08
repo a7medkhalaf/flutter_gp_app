@@ -1,15 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gp_app/widgets/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hive/hive.dart';
 
-enum Emotion { joy, sad, angry, surprised, fear, love, neutral }
+part 'diary_entry_hive.g.dart';
 
-class DiaryEntry {
+@HiveType(typeId: 0)
+enum Emotion {
+  @HiveField(0)
+  joy,
+  @HiveField(1)
+  sad,
+  @HiveField(2)
+  angry,
+  @HiveField(3)
+  surprised,
+  @HiveField(4)
+  fear,
+  @HiveField(5)
+  love,
+  @HiveField(6)
+  neutral
+}
+
+@HiveType(typeId: 1)
+class DiaryEntry extends HiveObject {
+  @HiveField(0)
   int id;
+  @HiveField(1)
   String title;
+  @HiveField(2)
   String contentPlainText;
+  @HiveField(3)
   String contentDelta;
+  @HiveField(4)
   DateTime date;
+  @HiveField(5, defaultValue: Emotion.neutral)
   Emotion emotion;
 
   DiaryEntry({

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gp_app/providers/diary_entry_provider.dart';
+import 'package:flutter_gp_app/database/diary_entry_provider.dart';
 import 'package:flutter_gp_app/widgets/diary_item.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';

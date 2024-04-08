@@ -1,9 +1,9 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gp_app/models/classifier.dart';
 import 'package:flutter_gp_app/models/diary_entry.dart';
-import 'package:flutter_gp_app/providers/diary_entry_provider.dart';
+import 'package:flutter_gp_app/database/diary_entry_provider.dart';
 import 'package:flutter_gp_app/widgets/custom_quill_editor.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +31,7 @@ class _AddEditDiaryScreenState extends State<AddEditDiaryScreen> {
           jsonDecode(diaryEntry.contentDelta),
         );
       } catch (e) {
-        print(e);
+        log(e.toString());
       }
     }
   }

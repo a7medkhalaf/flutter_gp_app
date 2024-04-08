@@ -7,6 +7,7 @@ environment:
   sdk: '>=3.2.6 <4.0.0'
 
 dependencies:
+  
   device_info_plus: ^9.1.2
   device_preview: ^1.1.0
   flutter:
@@ -14,33 +15,28 @@ dependencies:
   flutter_keyboard_visibility: ^6.0.0
   flutter_quill: ^9.3.0
   flutter_svg: ^2.0.10+1
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
   intl: ^0.18.1
  
   path: ^1.9.0
   path_provider: ^2.1.2
   provider: ^6.1.2
-  sqflite: ^2.3.2
-  sqflite_common_ffi: ^2.3.3
-  stopwordies: ^1.0.1
-  super_clipboard: ^0.8.5
-  text_analysis: ^1.0.0+2
-  tflite_flutter: ^0.10.4
-  tflite_text_classification: ^0.0.2
-  tflite_v2: ^1.0.0
+  super_clipboard: ^0.8.9
   url_launcher: ^6.2.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.9
+
 
 flutter:
   uses-material-design: true
 
   assets:
-    - assets/stable_model.tflite
-    - assets/model_24.tflite
-    - assets/vocabulary.txt
     - assets/emojis/neutral.svg
     - assets/emojis/joy.svg
     - assets/emojis/sad.svg

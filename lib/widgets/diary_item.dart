@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gp_app/models/diary_entry.dart';
-import 'package:flutter_gp_app/providers/diary_entry_provider.dart';
+import 'package:flutter_gp_app/database/diary_entry_provider.dart';
 import 'package:flutter_gp_app/screens/add_edit_diary_screen.dart';
-import 'package:flutter_gp_app/widgets/constants.dart';
 import 'package:flutter_gp_app/widgets/diary_date.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class DiaryListItem extends StatelessWidget {

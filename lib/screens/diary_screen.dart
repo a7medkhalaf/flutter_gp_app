@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gp_app/providers/diary_entry_provider.dart';
+import 'package:flutter_gp_app/database/diary_entry_provider.dart';
 import 'package:flutter_gp_app/screens/add_edit_diary_screen.dart';
 import 'package:flutter_gp_app/widgets/diary_list_view.dart';
 import 'package:provider/provider.dart';
@@ -17,8 +17,8 @@ class DiaryScreen extends StatelessWidget {
         actions: [
           TextButton(
             child: const Text('Reset'),
-            onPressed: () {
-              Provider.of<DiaryEntryProvider>(
+            onPressed: () async {
+              await Provider.of<DiaryEntryProvider>(
                 context,
                 listen: false,
               ).resetDiaryEntries();
