@@ -1,15 +1,10 @@
 import 'dart:io';
 
-import 'package:flutter_gp_app/models/diary_entry.dart';
+import 'package:flutter_gp_app/data/models/diary_entry.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 
-class HiveProvider {
-  // Singleton
-  static final HiveProvider _shared = HiveProvider._sharedInstance();
-  HiveProvider._sharedInstance();
-  factory HiveProvider() => _shared;
-
+class DiaryProvider {
   late Box<DiaryEntry> _diaries;
 
   Future<void> initHive() async {

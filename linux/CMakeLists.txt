@@ -144,8 +144,8 @@ if(NOT CMAKE_BUILD_TYPE MATCHES "Debug")
     COMPONENT Runtime)
 endif()
 
-# get tf lite binaries
-install(
-  FILES ${PROJECT_BUILD_DIR}/../blobs/libtensorflowlite_c-linux.so
-  DESTINATION ${INSTALL_BUNDLE_DATA_DIR}/../blobs/
-)
+# # get tf lite binaries
+# install(
+#   FILES ${PROJECT_BUILD_DIR}/../blobs/libtensorflowlite_c-linux.so
+#   DESTINATION ${INSTALL_BUNDLE_DATA_DIR}/../blobs/
+# )

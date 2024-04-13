@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gp_app/models/diary_entry.dart';
-import 'package:flutter_gp_app/database/diary_entry_provider.dart';
-import 'package:flutter_gp_app/screens/add_edit_diary_screen.dart';
-import 'package:flutter_gp_app/widgets/diary_date.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gp_app/bloc/diary_bloc.dart';
+import 'package:flutter_gp_app/data/models/diary_entry.dart';
+import 'package:flutter_gp_app/presentation/screens/add_edit_diary_screen.dart';
+import 'package:flutter_gp_app/presentation/widgets/diary_date.dart';
 
 class DiaryListItem extends StatelessWidget {
   final DiaryEntry diary;
@@ -16,10 +16,8 @@ class DiaryListItem extends StatelessWidget {
       child: Dismissible(
         key: UniqueKey(),
         direction: DismissDirection.endToStart,
-        onDismissed: (direction) => Provider.of<DiaryEntryProvider>(
-          context,
-          listen: false,
-        ).removeDiaryEntry(diary.id),
+        onDismissed: (direction) =>
+            BlocProvider.of<DiaryBloc>(context).add(DiaryDelete(diary.id)),
         confirmDismiss: (direction) {
           return showDialog(
             context: context,

@@ -1,4 +1,4 @@
-import 'package:flutter_gp_app/models/diary_entry.dart';
+import 'package:flutter_gp_app/data/models/diary_entry.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gp_app/widgets/custom_quill_toolbar.dart';
+import 'package:flutter_gp_app/presentation/widgets/custom_quill_toolbar.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 
 class CustomQuillEditor extends StatelessWidget {

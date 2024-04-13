@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_gp_app/widgets/constants.dart';
+import 'package:flutter_gp_app/presentation/widgets/constants.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive/hive.dart';
 
@@ -80,8 +83,48 @@ class DiaryEntry extends HiveObject {
     };
   }
 
+  factory DiaryEntry.fromMap(Map<String, dynamic> map) {
+    return DiaryEntry(
+      id: map['id'],
+      title: map['title'],
+      contentPlainText: map['content_plain_text'],
+      contentDelta: map['content_delta'],
+      date: DateTime.parse(map['date']),
+      emotion: Emotion.values[map['emotion']],
+    );
+  }
+
   @override
   String toString() {
     return 'DiaryEntry{id: $id, title: $title, contentPlainText: $contentPlainText, contentDelta: $contentDelta, date: $date, emotion: $emotion}';
+  }
+
+  DiaryEntry copyWith({
+    int? id,
+    String? title,
+    String? contentPlainText,
+    String? contentDelta,
+    DateTime? date,
+    Emotion? emotion,
+  }) {
+    return DiaryEntry(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      contentPlainText: contentPlainText ?? this.contentPlainText,
+      contentDelta: contentDelta ?? this.contentDelta,
+      date: date ?? this.date,
+      emotion: emotion ?? this.emotion,
+    );
+  }
+
+  factory DiaryEntry.create(String title, Document document) {
+    return DiaryEntry(
+      id: DateTime.now().microsecondsSinceEpoch,
+      title: title,
+      contentPlainText: document.toPlainText(),
+      contentDelta: jsonEncode(document.toDelta()),
+      date: DateTime.now(),
+      emotion: Emotion.neutral,
+    );
   }
 }

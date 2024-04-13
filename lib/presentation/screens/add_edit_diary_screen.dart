@@ -2,14 +2,14 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gp_app/models/diary_entry.dart';
-import 'package:flutter_gp_app/database/diary_entry_provider.dart';
-import 'package:flutter_gp_app/widgets/custom_quill_editor.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gp_app/bloc/diary_bloc.dart';
+import 'package:flutter_gp_app/data/models/diary_entry.dart';
+import 'package:flutter_gp_app/presentation/widgets/custom_quill_editor.dart';
 import 'package:flutter_quill/flutter_quill.dart';
-import 'package:provider/provider.dart';
 
 class AddEditDiaryScreen extends StatefulWidget {
-  static var routeName = 'add_edit_diary';
+  static var routeName = '/add_edit_diary';
 
   const AddEditDiaryScreen({super.key});
 
@@ -53,11 +53,6 @@ class _AddEditDiaryScreenState extends State<AddEditDiaryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final diaryProvider = Provider.of<DiaryEntryProvider>(
-      context,
-      listen: false,
-    );
-
     final diaryEntry =
         ModalRoute.of(context)!.settings.arguments as DiaryEntry?;
 
@@ -70,15 +65,25 @@ class _AddEditDiaryScreenState extends State<AddEditDiaryScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              diaryProvider.addUpdateDiaryEntry(
-                id: diaryEntry?.id,
-                title: _titleController.text,
-                contentDelta: jsonEncode(
-                  _quillController.document.toDelta().toJson(),
-                ),
-                contentPlainText: _quillController.document.toPlainText(),
-                date: diaryEntry == null ? DateTime.now() : diaryEntry.date,
-                emotion: diaryEntry?.emotion ?? Emotion.neutral,
+              final DiaryEntry newDiary;
+
+              if (diaryEntry == null) {
+                newDiary = DiaryEntry.create(
+                  _titleController.text,
+                  _quillController.document,
+                );
+              } else {
+                newDiary = diaryEntry.copyWith(
+                  title: _titleController.text,
+                  contentPlainText: _quillController.document.toPlainText(),
+                  contentDelta: jsonEncode(_quillController.document.toDelta()),
+                );
+              }
+
+              BlocProvider.of<DiaryBloc>(context).add(
+                diaryEntry == null
+                    ? DiaryInsert(newDiary)
+                    : DiaryUpdate(newDiary),
               );
               Navigator.of(context).pop();
             },

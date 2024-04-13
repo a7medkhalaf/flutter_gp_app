@@ -1,6 +1,6 @@
-import 'package:flutter_gp_app/database/hive_provider.dart';
-import 'package:flutter_gp_app/models/diary_entry.dart';
-import 'package:flutter_gp_app/database/dummy_data/constants.dart';
+import 'package:flutter_gp_app/data/repository/diary_repository.dart';
+import 'package:flutter_gp_app/data/models/diary_entry.dart';
+import 'package:flutter_gp_app/data/dummy_data/constants.dart';
 
 class DummyData {
   static var dummyDiaryEntries = [
@@ -148,7 +148,7 @@ class DummyData {
 
   static insertDummyDataIntoDB() async {
     for (int i = 0; i < dummyDiaryEntries.length; i++) {
-      await HiveProvider().insertDiary(dummyDiaryEntries[i]);
+      await DiaryRepository().insertDiary(dummyDiaryEntries[i]);
     }
   }
 }
