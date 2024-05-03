@@ -1,32 +1,16 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gp_app/extensions/color_extension.dart';
+import 'package:flutter_gp_app/data/models/emotion.dart';
 import 'package:flutter_gp_app/presentation/widgets/constants.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive/hive.dart';
 
-part 'diary_entry_hive.g.dart';
+part 'diary_entry.g.dart';
 
-@HiveType(typeId: 0)
-enum Emotion {
-  @HiveField(0)
-  joy,
-  @HiveField(1)
-  sad,
-  @HiveField(2)
-  angry,
-  @HiveField(3)
-  surprised,
-  @HiveField(4)
-  fear,
-  @HiveField(5)
-  love,
-  @HiveField(6)
-  neutral
-}
-
-@HiveType(typeId: 1)
+@HiveType(typeId: 2)
 class DiaryEntry extends HiveObject {
   @HiveField(0)
   int id;
@@ -38,7 +22,7 @@ class DiaryEntry extends HiveObject {
   String contentDelta;
   @HiveField(4)
   DateTime date;
-  @HiveField(5, defaultValue: Emotion.neutral)
+  @HiveField(5)
   Emotion emotion;
 
   DiaryEntry({
@@ -47,51 +31,36 @@ class DiaryEntry extends HiveObject {
     required this.contentPlainText,
     required this.contentDelta,
     required this.date,
-    this.emotion = Emotion.neutral,
+    required this.emotion,
   });
 
   Widget getEmotion() {
-    switch (emotion) {
-      case Emotion.neutral:
-        return SvgPicture.asset(
-          emojiNeutral,
-          color: Colors.black,
-        );
-      case Emotion.joy:
-        return SvgPicture.asset(emojiHappy, color: Colors.green);
-      case Emotion.sad:
-        return SvgPicture.asset(emojiSad, color: Colors.blue);
-      case Emotion.angry:
-        return SvgPicture.asset(emojiAngry, color: Colors.red);
-      case Emotion.surprised:
-        return SvgPicture.asset(emojiSurprised, color: Colors.yellow);
-      case Emotion.fear:
-        return SvgPicture.asset(emojiFear, color: Colors.orange);
-      case Emotion.love:
-        return SvgPicture.asset(emojiLove, color: Colors.pink);
-    }
-  }
+    const defaultColor = Colors.black;
+    var emotionColor = defaultColor.stringToColor(emotion.color);
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'title': title,
-      'content_plain_text': contentPlainText,
-      'content_delta': contentDelta,
-      'date': date.toIso8601String(),
-      'emotion': emotion.index,
-    };
-  }
-
-  factory DiaryEntry.fromMap(Map<String, dynamic> map) {
-    return DiaryEntry(
-      id: map['id'],
-      title: map['title'],
-      contentPlainText: map['content_plain_text'],
-      contentDelta: map['content_delta'],
-      date: DateTime.parse(map['date']),
-      emotion: Emotion.values[map['emotion']],
+    return SvgPicture.asset(
+      _getEmotionAsset(emotion.name),
+      colorFilter: ColorFilter.mode(emotionColor, BlendMode.srcIn),
     );
+  }
+
+  String _getEmotionAsset(String emotionName) {
+    switch (emotionName) {
+      case 'Sad':
+        return emojiSad;
+      case 'Joy':
+        return emojiJoy;
+      case 'Love':
+        return emojiLove;
+      case 'Angry':
+        return emojiAngry;
+      case 'Fear':
+        return emojiFear;
+      case 'Surprise':
+        return emojiSurprise;
+      default:
+        return emojiNeutral;
+    }
   }
 
   @override
@@ -117,14 +86,18 @@ class DiaryEntry extends HiveObject {
     );
   }
 
-  factory DiaryEntry.create(String title, Document document) {
+  factory DiaryEntry.create(
+    String title,
+    Document document,
+    Emotion emotion,
+  ) {
     return DiaryEntry(
       id: DateTime.now().microsecondsSinceEpoch,
       title: title,
       contentPlainText: document.toPlainText(),
       contentDelta: jsonEncode(document.toDelta()),
       date: DateTime.now(),
-      emotion: Emotion.neutral,
+      emotion: emotion,
     );
   }
 }

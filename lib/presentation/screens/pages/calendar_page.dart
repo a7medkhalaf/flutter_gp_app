@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gp_app/bloc/diary_bloc.dart';
 import 'package:flutter_gp_app/presentation/widgets/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -52,7 +50,7 @@ class _CalendarPageState extends State<CalendarPage> {
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: SvgPicture.asset(
-                emojiHappy,
+                emojiJoy,
                 colorFilter: const ColorFilter.mode(
                   Colors.black,
                   BlendMode.srcIn,

@@ -9,15 +9,8 @@ class CustomQuillEditor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.black,
-          width: 2,
-        ),
-        borderRadius: BorderRadius.circular(8),
-      ),
+      padding: const EdgeInsets.all(8),
       child: Column(
         children: [
           Expanded(
@@ -31,7 +24,7 @@ class CustomQuillEditor extends StatelessWidget {
           ),
           Container(
             color: Colors.black12,
-            child: CustomQuillTollbar(_controller),
+            child: CustomQuillToolbar(_controller),
           ),
         ],
       ),

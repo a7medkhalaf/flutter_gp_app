@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gp_app/bloc/diary_bloc.dart';
 import 'package:flutter_gp_app/data/models/diary_entry.dart';
+import 'package:flutter_gp_app/data/models/emotion.dart';
+import 'package:flutter_gp_app/data/provider/emotion_provider.dart';
 import 'package:flutter_gp_app/presentation/widgets/custom_quill_editor.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 
@@ -64,19 +66,22 @@ class _AddEditDiaryScreenState extends State<AddEditDiaryScreen> {
         centerTitle: true,
         actions: [
           TextButton(
-            onPressed: () {
+            onPressed: () async {
               final DiaryEntry newDiary;
-
+              final emotion =
+                  await classify(_quillController.document.toPlainText());
               if (diaryEntry == null) {
                 newDiary = DiaryEntry.create(
                   _titleController.text,
                   _quillController.document,
+                  Emotion.fromEnum(emotion),
                 );
               } else {
                 newDiary = diaryEntry.copyWith(
                   title: _titleController.text,
                   contentPlainText: _quillController.document.toPlainText(),
                   contentDelta: jsonEncode(_quillController.document.toDelta()),
+                  emotion: Emotion.fromEnum(emotion),
                 );
               }
 
@@ -85,6 +90,7 @@ class _AddEditDiaryScreenState extends State<AddEditDiaryScreen> {
                     ? DiaryInsert(newDiary)
                     : DiaryUpdate(newDiary),
               );
+
               Navigator.of(context).pop();
             },
             child: const Text('Save'),
@@ -98,9 +104,11 @@ class _AddEditDiaryScreenState extends State<AddEditDiaryScreen> {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: _titleController,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleLarge,
               decoration: const InputDecoration(
                 hintText: 'Title',
-                border: OutlineInputBorder(),
+                // border: OutlineInputBorder(),
               ),
             ),
           ),

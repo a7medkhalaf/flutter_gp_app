@@ -19,6 +19,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  http: ^1.2.1
   intl: ^0.18.1
  
   path: ^1.9.0
@@ -40,10 +41,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/emojis/neutral.svg
-    - assets/emojis/joy.svg
-    - assets/emojis/sad.svg
-    - assets/emojis/angry.svg
-    - assets/emojis/surprised.svg
-    - assets/emojis/fear.svg
-    - assets/emojis/love.svg
+    - assets/images/
+    - assets/icons/
+    - assets/emojis/
+    

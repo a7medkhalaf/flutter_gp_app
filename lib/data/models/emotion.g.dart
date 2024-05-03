@@ -1,47 +1,38 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'diary_entry.dart';
+part of 'emotion.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class DiaryEntryAdapter extends TypeAdapter<DiaryEntry> {
+class EmotionAdapter extends TypeAdapter<Emotion> {
   @override
   final int typeId = 1;
 
   @override
-  DiaryEntry read(BinaryReader reader) {
+  Emotion read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return DiaryEntry(
-      id: fields[0] as int,
-      title: fields[1] as String,
-      contentPlainText: fields[2] as String,
-      contentDelta: fields[3] as String,
-      date: fields[4] as DateTime,
-      emotion: fields[5] == null ? Emotion.neutral : fields[5] as Emotion,
+    return Emotion(
+      name: fields[0] as String,
+      color: fields[1] as String,
+      assetPath: fields[2] as String,
     );
   }
 
   @override
-  void write(BinaryWriter writer, DiaryEntry obj) {
+  void write(BinaryWriter writer, Emotion obj) {
     writer
-      ..writeByte(6)
-      ..writeByte(0)
-      ..write(obj.id)
-      ..writeByte(1)
-      ..write(obj.title)
-      ..writeByte(2)
-      ..write(obj.contentPlainText)
       ..writeByte(3)
-      ..write(obj.contentDelta)
-      ..writeByte(4)
-      ..write(obj.date)
-      ..writeByte(5)
-      ..write(obj.emotion);
+      ..writeByte(0)
+      ..write(obj.name)
+      ..writeByte(1)
+      ..write(obj.color)
+      ..writeByte(2)
+      ..write(obj.assetPath);
   }
 
   @override
@@ -50,59 +41,59 @@ class DiaryEntryAdapter extends TypeAdapter<DiaryEntry> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is DiaryEntryAdapter &&
+      other is EmotionAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
 
-class EmotionAdapter extends TypeAdapter<Emotion> {
+class EmotionEnumAdapter extends TypeAdapter<EmotionEnum> {
   @override
   final int typeId = 0;
 
   @override
-  Emotion read(BinaryReader reader) {
+  EmotionEnum read(BinaryReader reader) {
     switch (reader.readByte()) {
       case 0:
-        return Emotion.joy;
+        return EmotionEnum.joy;
       case 1:
-        return Emotion.sad;
+        return EmotionEnum.sad;
       case 2:
-        return Emotion.angry;
+        return EmotionEnum.anger;
       case 3:
-        return Emotion.surprised;
+        return EmotionEnum.surprise;
       case 4:
-        return Emotion.fear;
+        return EmotionEnum.fear;
       case 5:
-        return Emotion.love;
+        return EmotionEnum.love;
       case 6:
-        return Emotion.neutral;
+        return EmotionEnum.neutral;
       default:
-        return Emotion.joy;
+        return EmotionEnum.joy;
     }
   }
 
   @override
-  void write(BinaryWriter writer, Emotion obj) {
+  void write(BinaryWriter writer, EmotionEnum obj) {
     switch (obj) {
-      case Emotion.joy:
+      case EmotionEnum.joy:
         writer.writeByte(0);
         break;
-      case Emotion.sad:
+      case EmotionEnum.sad:
         writer.writeByte(1);
         break;
-      case Emotion.angry:
+      case EmotionEnum.anger:
         writer.writeByte(2);
         break;
-      case Emotion.surprised:
+      case EmotionEnum.surprise:
         writer.writeByte(3);
         break;
-      case Emotion.fear:
+      case EmotionEnum.fear:
         writer.writeByte(4);
         break;
-      case Emotion.love:
+      case EmotionEnum.love:
         writer.writeByte(5);
         break;
-      case Emotion.neutral:
+      case EmotionEnum.neutral:
         writer.writeByte(6);
         break;
     }
@@ -114,7 +105,7 @@ class EmotionAdapter extends TypeAdapter<Emotion> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is EmotionAdapter &&
+      other is EmotionEnumAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

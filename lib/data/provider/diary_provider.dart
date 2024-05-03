@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_gp_app/data/models/diary_entry.dart';
+import 'package:flutter_gp_app/data/models/emotion.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -14,8 +15,11 @@ class DiaryProvider {
     } else {
       await Hive.initFlutter();
     }
-    if (!Hive.isAdapterRegistered(0)) Hive.registerAdapter(EmotionAdapter());
-    if (!Hive.isAdapterRegistered(1)) Hive.registerAdapter(DiaryEntryAdapter());
+    if (!Hive.isAdapterRegistered(0)) {
+      Hive.registerAdapter(EmotionEnumAdapter());
+    }
+    if (!Hive.isAdapterRegistered(1)) Hive.registerAdapter(EmotionAdapter());
+    if (!Hive.isAdapterRegistered(2)) Hive.registerAdapter(DiaryEntryAdapter());
   }
 
   Future<void> _openDiaryBox() async {

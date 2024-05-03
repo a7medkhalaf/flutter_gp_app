@@ -1,3 +1,4 @@
+import 'package:flutter_gp_app/data/models/emotion.dart';
 import 'package:flutter_gp_app/data/repository/diary_repository.dart';
 import 'package:flutter_gp_app/data/models/diary_entry.dart';
 import 'package:flutter_gp_app/data/dummy_data/constants.dart';
@@ -10,6 +11,7 @@ class DummyData {
       contentPlainText: contentPlainText1,
       contentDelta: contentDelta1,
       date: DateTime.now().subtract(const Duration(days: 5)),
+      emotion: Emotion.fromEnum(EmotionEnum.joy),
     ),
     DiaryEntry(
       id: 2,
@@ -17,6 +19,7 @@ class DummyData {
       contentPlainText: contentPlainText2,
       contentDelta: contentDelta2,
       date: DateTime.now().subtract(const Duration(days: 7)),
+      emotion: Emotion.fromEnum(EmotionEnum.sad),
     ),
     DiaryEntry(
       id: 3,
@@ -24,6 +27,7 @@ class DummyData {
       contentPlainText: contentPlainText3,
       contentDelta: contentDelta3,
       date: DateTime.now().subtract(const Duration(days: 13)),
+      emotion: Emotion.fromEnum(EmotionEnum.anger),
     ),
     DiaryEntry(
       id: 4,
@@ -31,6 +35,7 @@ class DummyData {
       contentPlainText: contentPlainText4,
       contentDelta: contentDelta4,
       date: DateTime.now().subtract(const Duration(days: 15)),
+      emotion: Emotion.fromEnum(EmotionEnum.surprise),
     ),
     DiaryEntry(
       id: 5,
@@ -38,6 +43,7 @@ class DummyData {
       contentPlainText: contentPlainText5,
       contentDelta: contentDelta5,
       date: DateTime.now().subtract(const Duration(days: 17)),
+      emotion: Emotion.fromEnum(EmotionEnum.fear),
     ),
     DiaryEntry(
       id: 6,
@@ -45,6 +51,7 @@ class DummyData {
       contentPlainText: contentPlainText6,
       contentDelta: contentDelta6,
       date: DateTime.now().subtract(const Duration(days: 25)),
+      emotion: Emotion.fromEnum(EmotionEnum.love),
     ),
     DiaryEntry(
       id: 7,
@@ -52,6 +59,7 @@ class DummyData {
       contentPlainText: contentPlainText7,
       contentDelta: contentDelta7,
       date: DateTime.now().subtract(const Duration(days: 29)),
+      emotion: Emotion.fromEnum(EmotionEnum.neutral),
     ),
     DiaryEntry(
       id: 8,
@@ -59,6 +67,7 @@ class DummyData {
       contentPlainText: contentPlainText8,
       contentDelta: contentDelta8,
       date: DateTime.now().subtract(const Duration(days: 33)),
+      emotion: Emotion.fromEnum(EmotionEnum.neutral),
     ),
     DiaryEntry(
       id: 9,
@@ -66,6 +75,7 @@ class DummyData {
       contentPlainText: contentPlainText9,
       contentDelta: contentDelta9,
       date: DateTime.now().subtract(const Duration(days: 40)),
+      emotion: Emotion.fromEnum(EmotionEnum.neutral),
     ),
     DiaryEntry(
       id: 10,
@@ -73,6 +83,7 @@ class DummyData {
       contentPlainText: contentPlainText10,
       contentDelta: contentDelta10,
       date: DateTime.now().subtract(const Duration(days: 45)),
+      emotion: Emotion.fromEnum(EmotionEnum.joy),
     ),
     DiaryEntry(
       id: 11,
@@ -80,6 +91,7 @@ class DummyData {
       contentPlainText: contentPlainText11,
       contentDelta: contentDelta11,
       date: DateTime.now().subtract(const Duration(days: 46)),
+      emotion: Emotion.fromEnum(EmotionEnum.sad),
     ),
     DiaryEntry(
       id: 12,
@@ -87,6 +99,7 @@ class DummyData {
       contentPlainText: contentPlainText12,
       contentDelta: contentDelta12,
       date: DateTime.now().subtract(const Duration(days: 49)),
+      emotion: Emotion.fromEnum(EmotionEnum.anger),
     ),
     DiaryEntry(
       id: 13,
@@ -94,6 +107,7 @@ class DummyData {
       contentPlainText: contentPlainText13,
       contentDelta: contentDelta13,
       date: DateTime.now().subtract(const Duration(days: 55)),
+      emotion: Emotion.fromEnum(EmotionEnum.surprise),
     ),
     DiaryEntry(
       id: 14,
@@ -101,6 +115,7 @@ class DummyData {
       contentPlainText: contentPlainText14,
       contentDelta: contentDelta14,
       date: DateTime.now().subtract(const Duration(days: 60)),
+      emotion: Emotion.fromEnum(EmotionEnum.fear),
     ),
     DiaryEntry(
       id: 15,
@@ -108,6 +123,7 @@ class DummyData {
       contentPlainText: contentPlainText15,
       contentDelta: contentDelta15,
       date: DateTime.now().subtract(const Duration(days: 61)),
+      emotion: Emotion.fromEnum(EmotionEnum.love),
     ),
     DiaryEntry(
       id: 16,
@@ -115,6 +131,7 @@ class DummyData {
       contentPlainText: contentPlainText16,
       contentDelta: contentDelta16,
       date: DateTime.now().subtract(const Duration(days: 63)),
+      emotion: Emotion.fromEnum(EmotionEnum.neutral),
     ),
     DiaryEntry(
       id: 17,
@@ -122,6 +139,7 @@ class DummyData {
       contentPlainText: contentPlainText17,
       contentDelta: contentDelta17,
       date: DateTime.now().subtract(const Duration(days: 69)),
+      emotion: Emotion.fromEnum(EmotionEnum.neutral),
     ),
     DiaryEntry(
       id: 18,
@@ -129,6 +147,7 @@ class DummyData {
       contentPlainText: contentPlainText18,
       contentDelta: contentDelta18,
       date: DateTime.now().subtract(const Duration(days: 77)),
+      emotion: Emotion.fromEnum(EmotionEnum.neutral),
     ),
     DiaryEntry(
       id: 19,
@@ -136,6 +155,7 @@ class DummyData {
       contentPlainText: contentPlainText19,
       contentDelta: contentDelta19,
       date: DateTime.now().subtract(const Duration(days: 80)),
+      emotion: Emotion.fromEnum(EmotionEnum.joy),
     ),
     DiaryEntry(
       id: 20,
@@ -143,6 +163,7 @@ class DummyData {
       contentPlainText: contentPlainText20,
       contentDelta: contentDelta20,
       date: DateTime.now().subtract(const Duration(days: 88)),
+      emotion: Emotion.fromEnum(EmotionEnum.sad),
     ),
   ];
 

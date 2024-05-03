@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gp_app/data/models/diary_entry.dart';
@@ -18,12 +16,6 @@ class DiaryBloc extends Bloc<DiaryEvent, DiaryState> {
     on<DiaryUpdate>(_updateDiary);
     on<DiaryDelete>(_deleteDiary);
     on<DiaryReset>(_resetDiary);
-  }
-
-  @override
-  void onChange(Change<DiaryState> change) {
-    super.onChange(change);
-    log('DiaryBloc - $change');
   }
 
   void _loadDiaryByMonth(

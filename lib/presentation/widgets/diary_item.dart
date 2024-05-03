@@ -4,6 +4,7 @@ import 'package:flutter_gp_app/bloc/diary_bloc.dart';
 import 'package:flutter_gp_app/data/models/diary_entry.dart';
 import 'package:flutter_gp_app/presentation/screens/add_edit_diary_screen.dart';
 import 'package:flutter_gp_app/presentation/widgets/diary_date.dart';
+import 'package:flutter_gp_app/presentation/screens/diary_overview_screen.dart';
 
 class DiaryListItem extends StatelessWidget {
   final DiaryEntry diary;
@@ -57,9 +58,10 @@ class DiaryListItem extends StatelessWidget {
         ),
         child: ListTile(
             onTap: () {
-              Navigator.of(context).pushNamed(
-                AddEditDiaryScreen.routeName,
-                arguments: diary,
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => DiaryOverviewScreen(diary),
+                ),
               );
             },
             title: Text(

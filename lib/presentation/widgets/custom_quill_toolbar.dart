@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 
-class CustomQuillTollbar extends StatelessWidget {
+class CustomQuillToolbar extends StatelessWidget {
   final QuillController controller;
-  const CustomQuillTollbar(this.controller, {super.key});
+  const CustomQuillToolbar(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
