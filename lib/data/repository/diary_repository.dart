@@ -22,14 +22,14 @@ class DiaryRepository {
     await _diaryProvider.deleteDiary(id);
   }
 
-  Future<List<DiaryEntry>> getAllDiaries() async {
+  Future<List<DiaryEntry>> _getAllDiaries() async {
     final diaries = await _diaryProvider.getAllDiaries();
     diaries.sort((a, b) => b.date.compareTo(a.date));
     return diaries;
   }
 
-  Future<List<List<DiaryEntry>>> getAllDiariesByMonth() async {
-    final diaries = await getAllDiaries();
+  Future<List<List<DiaryEntry>>> getDiariesByMonth() async {
+    final diaries = await _getAllDiaries();
     final diaryEntriesByMonth = <List<DiaryEntry>>[];
     final diaryEntriesByMonthMap = <String, List<DiaryEntry>>{};
     for (var diaryEntry in diaries) {
@@ -42,6 +42,16 @@ class DiaryRepository {
     }
     diaryEntriesByMonth.addAll(diaryEntriesByMonthMap.values.toList());
     return diaryEntriesByMonth;
+  }
+
+  Future<List<DiaryEntry>> getDiariesByDay(DateTime day) async {
+    final diaries = await _getAllDiaries();
+    return diaries
+        .where((diary) =>
+            diary.date.day == day.day &&
+            diary.date.month == day.month &&
+            diary.date.year == day.year)
+        .toList();
   }
 
   Future<void> deleteAllDiaries() async {

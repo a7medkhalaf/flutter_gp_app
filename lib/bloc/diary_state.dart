@@ -8,9 +8,13 @@ final class DiaryInitial extends DiaryState {}
 final class DiaryLoading extends DiaryState {}
 
 final class DiaryLoaded extends DiaryState {
-  final List<List<DiaryEntry>> diaryEntries;
+  final List<List<DiaryEntry>> diaryEntriesPerMonth;
+  final List<DiaryEntry> diaryEntriesPerDay;
 
-  DiaryLoaded(this.diaryEntries);
+  DiaryLoaded({
+    this.diaryEntriesPerMonth = const [],
+    this.diaryEntriesPerDay = const [],
+  });
 }
 
 final class DiaryFailure extends DiaryState {

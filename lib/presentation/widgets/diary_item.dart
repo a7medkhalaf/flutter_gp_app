@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gp_app/bloc/diary_bloc.dart';
 import 'package:flutter_gp_app/data/models/diary_entry.dart';
-import 'package:flutter_gp_app/presentation/screens/add_edit_diary_screen.dart';
 import 'package:flutter_gp_app/presentation/widgets/diary_date.dart';
 import 'package:flutter_gp_app/presentation/screens/diary_overview_screen.dart';
 

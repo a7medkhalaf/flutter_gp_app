@@ -41,7 +41,7 @@ class MainScreen extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             children: const [
               DiaryPage(),
-              CalendarPage(),
+              CalenderPage(),
               ReviewPage(),
               ProfilePage(),
             ],

@@ -14,7 +14,7 @@ class DiaryPage extends StatelessWidget {
       itemBuilder: (context, i) {
         return DiaryListViewPerMonth(i);
       },
-      itemCount: state.diaryEntries.length,
+      itemCount: state.diaryEntriesPerMonth.length,
     );
   }
 }

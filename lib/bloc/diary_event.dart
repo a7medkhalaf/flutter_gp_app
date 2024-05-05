@@ -25,6 +25,12 @@ final class DiaryGetAll extends DiaryEvent {}
 
 final class DiaryGetAllByMonth extends DiaryEvent {}
 
+final class DiaryGetAllByDay extends DiaryEvent {
+  final DateTime day;
+
+  DiaryGetAllByDay(this.day);
+}
+
 final class DiaryDeleteAll extends DiaryEvent {}
 
 final class DiaryReset extends DiaryEvent {}

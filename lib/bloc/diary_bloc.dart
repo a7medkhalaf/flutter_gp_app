@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gp_app/data/models/diary_entry.dart';
@@ -11,21 +13,45 @@ class DiaryBloc extends Bloc<DiaryEvent, DiaryState> {
   final DiaryRepository _diaryRepository;
 
   DiaryBloc(this._diaryRepository) : super(DiaryInitial()) {
-    on<DiaryGetAllByMonth>(_loadDiaryByMonth);
+    on<DiaryGetAllByMonth>(_loadDiariesByMonth);
+    on<DiaryGetAllByDay>(_loadDiariesByDay);
     on<DiaryInsert>(_insertDiary);
     on<DiaryUpdate>(_updateDiary);
     on<DiaryDelete>(_deleteDiary);
     on<DiaryReset>(_resetDiary);
   }
-
-  void _loadDiaryByMonth(
+  void _loadDiariesByMonth(
     DiaryGetAllByMonth event,
     Emitter<DiaryState> emit,
   ) async {
     emit(DiaryLoading());
     try {
-      final diaryEntries = await _diaryRepository.getAllDiariesByMonth();
-      emit(DiaryLoaded(diaryEntries));
+      final diaryEntries = await _diaryRepository.getDiariesByMonth();
+      emit(DiaryLoaded(diaryEntriesPerMonth: diaryEntries));
+    } catch (e) {
+      emit(DiaryFailure(e.toString()));
+    }
+  }
+
+  // @override
+  // void onChange(Change<DiaryState> change) {
+  //   log(change.toString());
+  //   super.onChange(change);
+  // }
+
+  void _loadDiariesByDay(
+    DiaryGetAllByDay event,
+    Emitter<DiaryState> emit,
+  ) async {
+    emit(DiaryLoading());
+    try {
+      final diaryEntriesPerMonth = await _diaryRepository.getDiariesByMonth();
+      final diaryEntriesPerDay =
+          await _diaryRepository.getDiariesByDay(event.day);
+      emit(DiaryLoaded(
+        diaryEntriesPerMonth: diaryEntriesPerMonth,
+        diaryEntriesPerDay: diaryEntriesPerDay,
+      ));
     } catch (e) {
       emit(DiaryFailure(e.toString()));
     }

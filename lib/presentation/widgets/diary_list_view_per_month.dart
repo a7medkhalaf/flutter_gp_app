@@ -13,15 +13,17 @@ class DiaryListViewPerMonth extends StatelessWidget {
     return BlocBuilder<DiaryBloc, DiaryState>(
       builder: (context, state) {
         if (state is DiaryLoaded) {
-          if (state.diaryEntries.elementAt(monthIndex).isEmpty) {
+          if (state.diaryEntriesPerMonth.elementAt(monthIndex).isEmpty) {
             return const SizedBox();
           }
 
           return Column(
             children: [
               Text(
-                DateFormat.yMMMM().format(
-                    state.diaryEntries.elementAt(monthIndex).elementAt(0).date),
+                DateFormat.yMMMM().format(state.diaryEntriesPerMonth
+                    .elementAt(monthIndex)
+                    .elementAt(0)
+                    .date),
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge!
@@ -32,11 +34,12 @@ class DiaryListViewPerMonth extends StatelessWidget {
                 shrinkWrap: true,
                 physics: const ScrollPhysics(),
                 itemBuilder: (context, diaryIndex) {
-                  return DiaryListItem(state.diaryEntries
+                  return DiaryListItem(state.diaryEntriesPerMonth
                       .elementAt(monthIndex)
                       .elementAt(diaryIndex));
                 },
-                itemCount: state.diaryEntries.elementAt(monthIndex).length,
+                itemCount:
+                    state.diaryEntriesPerMonth.elementAt(monthIndex).length,
               ),
               const Divider(
                 indent: 80,
