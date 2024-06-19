@@ -19,15 +19,18 @@ class DiaryListViewPerMonth extends StatelessWidget {
 
           return Column(
             children: [
-              Text(
-                DateFormat.yMMMM().format(state.diaryEntriesPerMonth
-                    .elementAt(monthIndex)
-                    .elementAt(0)
-                    .date),
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge!
-                    .copyWith(fontStyle: FontStyle.italic),
+              AppBar(
+                title: Text(
+                  DateFormat.yMMMM().format(state.diaryEntriesPerMonth
+                      .elementAt(monthIndex)
+                      .elementAt(0)
+                      .date),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(fontStyle: FontStyle.italic),
+                ),
+                centerTitle: true,
               ),
               ListView.builder(
                 padding: const EdgeInsets.all(8),
