@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gp_app/config/colors.dart';
 import 'package:flutter_gp_app/data/models/diary_entry.dart';
@@ -18,6 +20,10 @@ class DiaryOverviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    diary.activities.isEmpty
+        ? diary.activities = ['...', '...', '...']
+        : diary.activities;
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -130,11 +136,11 @@ class DiaryOverviewScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(height: 16.0),
-                  const SuggestedActivity(),
+                  SuggestedActivity(diary.activities[0]),
                   const SizedBox(height: 16.0),
-                  const SuggestedActivity(),
+                  SuggestedActivity(diary.activities[1]),
                   const SizedBox(height: 16.0),
-                  const SuggestedActivity(),
+                  SuggestedActivity(diary.activities[2]),
                   const SizedBox(height: 32.0),
                 ],
               ),
@@ -147,9 +153,8 @@ class DiaryOverviewScreen extends StatelessWidget {
 }
 
 class SuggestedActivity extends StatelessWidget {
-  const SuggestedActivity({
-    super.key,
-  });
+  final String activity;
+  const SuggestedActivity(this.activity, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -166,7 +171,7 @@ class SuggestedActivity extends StatelessWidget {
             color: kMainTextColor,
           ),
           child: Text(
-            '1',
+            '*',
             style: Theme.of(context)
                 .textTheme
                 .bodySmall!
@@ -174,13 +179,9 @@ class SuggestedActivity extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: Column(
-            children: [
-              Text(
-                '...',
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-            ],
+          child: Text(
+            activity,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ),
       ],

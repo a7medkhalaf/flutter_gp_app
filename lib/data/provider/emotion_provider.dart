@@ -22,7 +22,6 @@ Future<EmotionEnum> classify(String diary) async {
   }
   var jsonData = jsonDecode(response.body);
   var emotion = jsonData['emotion'].toString();
-  print(emotion);
 
   if (emotion == 'sad') {
     return EmotionEnum.sad;
@@ -39,4 +38,17 @@ Future<EmotionEnum> classify(String diary) async {
   } else {
     return EmotionEnum.neutral;
   }
+}
+
+Future<List<String>> getActivities(String emotion) async {
+  late final http.Response response;
+  try {
+    response = await http.get(
+      Uri.parse('http://localhost:5000/suggest?emotion=$emotion'),
+    );
+  } catch (e) {
+    return [];
+  }
+  var jsonData = jsonDecode(response.body);
+  return jsonData['activities'].cast<String>();
 }

@@ -16,17 +16,17 @@ class MainScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: const Text('My App'),
-        //   actions: [
-        //     TextButton(
-        //       child: const Text('Reset'),
-        //       onPressed: () {
-        //         BlocProvider.of<DiaryBloc>(context).add(DiaryReset());
-        //       },
-        //     ),
-        //   ],
-        // ),
+        appBar: AppBar(
+          title: const Text('My App'),
+          actions: [
+            TextButton(
+              child: const Text('Reset'),
+              onPressed: () {
+                BlocProvider.of<DiaryBloc>(context).add(DiaryReset());
+              },
+            ),
+          ],
+        ),
         body: BlocConsumer<DiaryBloc, DiaryState>(
           listener: (context, state) {
             if (state is DiaryInitial) {

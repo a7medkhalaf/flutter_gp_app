@@ -24,6 +24,8 @@ class DiaryEntry extends HiveObject {
   DateTime date;
   @HiveField(5)
   Emotion emotion;
+  @HiveField(6)
+  List<String> activities;
 
   DiaryEntry({
     required this.id,
@@ -32,6 +34,7 @@ class DiaryEntry extends HiveObject {
     required this.contentDelta,
     required this.date,
     required this.emotion,
+    this.activities = const ['...', '...', '...'],
   });
 
   Widget getEmotion() {
@@ -75,6 +78,7 @@ class DiaryEntry extends HiveObject {
     String? contentDelta,
     DateTime? date,
     Emotion? emotion,
+    List<String>? activities,
   }) {
     return DiaryEntry(
       id: id ?? this.id,
@@ -83,6 +87,7 @@ class DiaryEntry extends HiveObject {
       contentDelta: contentDelta ?? this.contentDelta,
       date: date ?? this.date,
       emotion: emotion ?? this.emotion,
+      activities: activities ?? this.activities,
     );
   }
 
@@ -90,6 +95,7 @@ class DiaryEntry extends HiveObject {
     String title,
     Document document,
     Emotion emotion,
+    List<String> activities,
   ) {
     return DiaryEntry(
       id: DateTime.now().microsecondsSinceEpoch,
@@ -98,6 +104,7 @@ class DiaryEntry extends HiveObject {
       contentDelta: jsonEncode(document.toDelta()),
       date: DateTime.now(),
       emotion: emotion,
+      activities: activities,
     );
   }
 }

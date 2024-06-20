@@ -70,11 +70,13 @@ class _AddEditDiaryScreenState extends State<AddEditDiaryScreen> {
               final DiaryEntry newDiary;
               final emotion =
                   await classify(_quillController.document.toPlainText());
+              final List<String> activities = await getActivities(emotion.name);
               if (diaryEntry == null) {
                 newDiary = DiaryEntry.create(
                   _titleController.text,
                   _quillController.document,
                   Emotion.fromEnum(emotion),
+                  activities,
                 );
               } else {
                 newDiary = diaryEntry.copyWith(
@@ -82,6 +84,7 @@ class _AddEditDiaryScreenState extends State<AddEditDiaryScreen> {
                   contentPlainText: _quillController.document.toPlainText(),
                   contentDelta: jsonEncode(_quillController.document.toDelta()),
                   emotion: Emotion.fromEnum(emotion),
+                  activities: activities,
                 );
               }
 

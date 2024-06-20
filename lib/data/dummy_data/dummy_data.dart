@@ -12,6 +12,7 @@ class DummyData {
       contentDelta: contentDelta1,
       date: DateTime.now().subtract(const Duration(days: 5)),
       emotion: Emotion.fromEnum(EmotionEnum.joy),
+      activities: ["activity1", "activity2", "activity3"],
     ),
     DiaryEntry(
       id: 2,
