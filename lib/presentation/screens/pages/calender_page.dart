@@ -38,14 +38,14 @@ class _CalenderPageState extends State<CalenderPage> {
         EasyDateTimeLine(
           initialDate: DateTime.now(),
           onDateChange: _onDateChange,
-          activeColor: const Color(0xff85A389),
+          activeColor: Theme.of(context).colorScheme.primary,
           headerProps: const EasyHeaderProps(
             monthPickerType: MonthPickerType.switcher,
             dateFormatter: DateFormatter.dayOnly(),
           ),
-          dayProps: const EasyDayProps(
+          dayProps: EasyDayProps(
             todayHighlightStyle: TodayHighlightStyle.withBackground,
-            todayHighlightColor: Color(0xffE1ECC8),
+            todayHighlightColor: Theme.of(context).colorScheme.primaryContainer,
           ),
         ),
         const SizedBox(height: 32.0),

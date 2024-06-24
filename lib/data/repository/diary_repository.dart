@@ -10,6 +10,14 @@ class DiaryRepository {
     await _diaryProvider.initHive();
   }
 
+  Future<void> backupDatabase() async {
+    await _diaryProvider.backupDatabase();
+  }
+
+  Future<void> restoreDatabase() async {
+    await _diaryProvider.restoreDatabase();
+  }
+
   Future<void> insertDiary(DiaryEntry diary) async {
     await _diaryProvider.insertDiary(diary);
   }

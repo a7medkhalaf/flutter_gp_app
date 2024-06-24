@@ -34,3 +34,7 @@ final class DiaryGetAllByDay extends DiaryEvent {
 final class DiaryDeleteAll extends DiaryEvent {}
 
 final class DiaryReset extends DiaryEvent {}
+
+final class DiaryBackup extends DiaryEvent {}
+
+final class DiaryRestore extends DiaryEvent {}

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_gp_app/config/colors.dart';
 import 'package:flutter_gp_app/data/models/diary_entry.dart';

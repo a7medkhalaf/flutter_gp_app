@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter_gp_app/data/models/diary_entry.dart';
@@ -24,6 +25,30 @@ class DiaryProvider {
 
   Future<void> _openDiaryBox() async {
     _diaries = await Hive.openBox('diaries');
+  }
+
+  Future<void> backupDatabase() async {
+    await _openDiaryBox();
+    final boxPath = _diaries.path;
+    try {
+      final backupPath = await getExternalStorageDirectory();
+      await File(boxPath!).copy('$backupPath/diaries.hive');
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<void> restoreDatabase() async {
+    await _openDiaryBox();
+    final boxPath = _diaries.path;
+    try {
+      final backupPath = await getExternalStorageDirectory();
+      await File('$backupPath/diaries.hive').copy(boxPath!);
+    } catch (e) {
+      log(e.toString());
+    } finally {
+      await _openDiaryBox();
+    }
   }
 
   // Future<void> removeDatabase() async {

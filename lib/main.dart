@@ -19,7 +19,9 @@ void main() async {
         child: BlocProvider(
           create: (context) => DiaryBloc(context.read<DiaryRepository>()),
           child: MaterialApp(
-            theme: ThemeData(colorSchemeSeed: Colors.green),
+            theme: ThemeData(
+              colorSchemeSeed: Colors.green,
+            ),
             debugShowCheckedModeBanner: false,
             // ignore: deprecated_member_use
             useInheritedMediaQuery: true,

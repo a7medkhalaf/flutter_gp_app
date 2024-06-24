@@ -17,6 +17,8 @@ class DiaryBloc extends Bloc<DiaryEvent, DiaryState> {
     on<DiaryUpdate>(_updateDiary);
     on<DiaryDelete>(_deleteDiary);
     on<DiaryReset>(_resetDiary);
+    on<DiaryBackup>(_backupDatabase);
+    on<DiaryRestore>(_restoreDatabase);
   }
   void _loadDiariesByMonth(
     DiaryGetAllByMonth event,
@@ -102,6 +104,32 @@ class DiaryBloc extends Bloc<DiaryEvent, DiaryState> {
     try {
       await _diaryRepository.deleteAllDiaries();
       await DummyData.insertDummyDataIntoDB();
+      emit(DiaryInitial());
+    } catch (e) {
+      emit(DiaryFailure(e.toString()));
+    }
+  }
+
+  void _backupDatabase(
+    DiaryBackup event,
+    Emitter<DiaryState> emit,
+  ) async {
+    emit(DiaryLoading());
+    try {
+      await _diaryRepository.backupDatabase();
+      emit(DiaryInitial());
+    } catch (e) {
+      emit(DiaryFailure(e.toString()));
+    }
+  }
+
+  void _restoreDatabase(
+    DiaryRestore event,
+    Emitter<DiaryState> emit,
+  ) async {
+    emit(DiaryLoading());
+    try {
+      await _diaryRepository.restoreDatabase();
       emit(DiaryInitial());
     } catch (e) {
       emit(DiaryFailure(e.toString()));
