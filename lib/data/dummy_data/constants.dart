@@ -107,7 +107,7 @@ const contentDelta8 =
 ''';
 
 // 9th Diary
-const title9 = 'A Quest for Understanding';
+const title9 = '';
 const contentPlainText9 = '';
 const contentDelta9 = '';
 

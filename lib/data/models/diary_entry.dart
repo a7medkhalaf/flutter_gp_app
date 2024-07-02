@@ -24,7 +24,7 @@ class DiaryEntry extends HiveObject {
   DateTime date;
   @HiveField(5)
   Emotion emotion;
-  @HiveField(6)
+  @HiveField(6, defaultValue: ['...', '...', '...'])
   List<String> activities;
 
   DiaryEntry({

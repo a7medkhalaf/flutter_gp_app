@@ -31,8 +31,12 @@ class DiaryProvider {
     await _openDiaryBox();
     final boxPath = _diaries.path;
     try {
-      final backupPath = await getExternalStorageDirectory();
-      await File(boxPath!).copy('$backupPath/diaries.hive');
+      if (Platform.isLinux) {
+        await File(boxPath!).copy('/home/khalaf/diaries.hive');
+      } else {
+        final backupPath = await getExternalStorageDirectory();
+        await File(boxPath!).copy('${backupPath!.path}/diaries.hive');
+      }
     } catch (e) {
       log(e.toString());
     }
@@ -42,8 +46,12 @@ class DiaryProvider {
     await _openDiaryBox();
     final boxPath = _diaries.path;
     try {
-      final backupPath = await getExternalStorageDirectory();
-      await File('$backupPath/diaries.hive').copy(boxPath!);
+      if (Platform.isLinux) {
+        await File('/home/khalaf/diaries.hive').copy(boxPath!);
+      } else {
+        final backupPath = await getExternalStorageDirectory();
+        await File('${backupPath!.path}/diaries.hive').copy(boxPath!);
+      }
     } catch (e) {
       log(e.toString());
     } finally {

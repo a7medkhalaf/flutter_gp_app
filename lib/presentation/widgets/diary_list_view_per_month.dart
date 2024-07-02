@@ -13,6 +13,11 @@ class DiaryListViewPerMonth extends StatelessWidget {
     return BlocBuilder<DiaryBloc, DiaryState>(
       builder: (context, state) {
         if (state is DiaryLoaded) {
+          try {
+            state.diaryEntriesPerMonth.elementAt(monthIndex);
+          } catch (e) {
+            return const SizedBox();
+          }
           if (state.diaryEntriesPerMonth.elementAt(monthIndex).isEmpty) {
             return const SizedBox();
           }

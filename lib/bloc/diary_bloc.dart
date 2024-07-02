@@ -130,6 +130,7 @@ class DiaryBloc extends Bloc<DiaryEvent, DiaryState> {
     emit(DiaryLoading());
     try {
       await _diaryRepository.restoreDatabase();
+      await _diaryRepository.initHive();
       emit(DiaryInitial());
     } catch (e) {
       emit(DiaryFailure(e.toString()));

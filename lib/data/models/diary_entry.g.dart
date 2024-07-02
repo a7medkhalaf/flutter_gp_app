@@ -23,7 +23,9 @@ class DiaryEntryAdapter extends TypeAdapter<DiaryEntry> {
       contentDelta: fields[3] as String,
       date: fields[4] as DateTime,
       emotion: fields[5] as Emotion,
-      activities: (fields[6] as List).cast<String>(),
+      activities: fields[6] == null
+          ? ['...', '...', '...']
+          : (fields[6] as List).cast<String>(),
     );
   }
 
