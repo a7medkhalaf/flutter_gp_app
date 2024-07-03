@@ -1,29 +1,29 @@
-# Diary App - Emotion Detection and Recommendation System
-Diary is a Flutter mobile application that incorporates emotion detection technology and a recommendation system to provide personalized diary entries and suggestions for users based on their emotional state.
-
-![image](https://github.com/a7medkhalaf/flutter_gp_app/assets/76059708/1f7301ed-d4f0-4eae-8d6e-3776acc73b9e)
+# FeelGood - A Mental Health Diary App
+FeelGood is a mobile application designed to help users document their daily emotions and receive activity recommendations based on their emotional states. This app leverages sentiment analysis to provide personalized suggestions, aiming to enhance users' emotional well-being.
 
 ## Features
-- **Personalized Diary Entries**: Allows users to create diary entries and journal their thoughts and feelings.
-- **Emotion Detection**: Utilizes machine learning algorithms to detect the user's emotional state based on their diary entries.
-- **Recommendation System**: Provides personalized recommendations for activities based on the user's emotional state.
-- **Upcoming Feature**:
-    -  **User Profile**: Enables users to customize their profile and preferences for a personalized experience.
-    - **Calendar with Emotion Overview**: Future update will include a calendar feature that provides an overview of emotions recorded on specific dates directly on the calendar interface.
-    - **Review Screen**: A review screen will be added, allowing users to view an overall review of their emotions and diary entries, acting as a tracker to monitor emotional trends over time.
+- **Diary Management**: Add, edit, view, and delete daily diary entries.
+- **Sentiment Analysis**: Analyze the sentiment of diary entries to detect emotions.
+- **Activity Recommendations**: Get personalized activity suggestions based on detected emotions.
+- **Calendar View**: Filter and view diary entries by day.
+- **Profile Management**: Backup, restore, and reset diary entries.
+- **Graphs and Statistics**: (Currently under development) View insights into emotional trends and activity patterns over time.
+
+## Screenshots
+![Screenshot from 2024-06-26 22-12-59](https://github.com/a7medkhalaf/flutter_gp_app/assets/76059708/ab7ab49a-465e-4154-9a3b-b5d6f21051ca)
 
 ## Technologies Used
-- **Flutter**: Cross-platform framework for building mobile applications.
-- **Hive**: Lightweight and efficient local database for storing user data and preferences.
-- **BLoC** (Business Logic Component): State management library for Flutter apps, following the BLoC architecture pattern.
-- **TensorFlow**: Machine learning framework for emotion detection and recommendation system.
-- **Flask**: Micro web framework used for the backend API to interact with the Flutter app.
-
+- **Flutter** - Cross-platform mobile framework
+- **Dart** - Programming language for Flutter
+- **Hive** - Local NoSQL database for Flutter
+- **BLoC** - State management library for Flutter
+- **Kaggle** - Platform for building the sentiment analysis model
+- **Flask** - Web framework for the server API
 
 ## Getting Started
 To run the Diary app locally on your machine, follow these steps:
 
-1. Clone the repository: git clone [(Diary App)](https://github.com/a7medkhalaf/flutter_gp_app/)
+1. Clone the repository: git clone https://github.com/a7medkhalaf/flutter_gp_app
 2. Navigate to the project directory: cd flutter_gp_app
 3. Install dependencies: flutter pub get
 4. Run the app: flutter run
